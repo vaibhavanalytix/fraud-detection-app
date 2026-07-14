@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { margin-top: 20px; padding: 10px 20px; background: #333; color: white; border: none; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; font-size: 18px; font-weight: bold; }
+        .fraud { background: #fdd; color: #900; }
+        .legit { background: #dfd; color: #090; }
+    </style>
+</head>
+<body>
+    <h2>Fraud Detection Predictor</h2>
+
+    <form action="/predict" method="POST">
+        <label>Transaction Amount</label>
+        <input type="number" name="amount" step="0.01" required>
+
+        <label>Product Code</label>
+        <select name="product_cd" required>
+            <option value="W">W</option>
+            <option value="C">C</option>
+            <option value="H">H</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+        </select>
+
+        <label>Card Type</label>
+        <select name="card4" required>
+            <option value="visa">Visa</option>
+            <option value="mastercard">Mastercard</option>
+            <option value="discover">Discover</option>
+            <option value="american express">American Express</option>
+        </select>
+
+        <label>Card Category</label>
+        <select name="card6" required>
+            <option value="debit">Debit</option>
+            <option value="credit">Credit</option>
+        </select>
+
+        <label>Email Domain</label>
+        <input type="text" name="email_domain" placeholder="gmail.com" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result {{ 'fraud' if prediction == 'FRAUD' else 'legit' }}">
+        Prediction: {{ prediction }} (Fraud Probability: {{ probability }}%)
+    </div>
+    {% endif %}
+</body>
+</html>
