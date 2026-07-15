@@ -4,7 +4,7 @@ A machine learning web app that predicts whether a credit card transaction is fr
 
 **Live Demo:** https://fraud-detection-app-hccr.onrender.com
 
-*(Note: hosted on a free tier - first load may take 30-50 seconds if the app has been inactive.)*
+*(Note: hosted on a free tier — first load may take 30-50 seconds if the app has been inactive.)*
 
 ## Overview
 
@@ -16,6 +16,25 @@ This project detects fraudulent transactions using a Random Forest model trained
 - **Size:** ~590,000 transactions, 434 features
 - **Target:** `isFraud` (0 = legit, 1 = fraud)
 - **Class distribution:** 96.5% legit, 3.5% fraud
+
+## Project Structure
+
+    fraud-detection-app/
+    ├── app/                    # Flask web application
+    │   ├── app.py              # Backend logic
+    │   ├── templates/
+    │   │   └── index.html      # Frontend form
+    │   └── requirements.txt
+    ├── models/                 # Saved model and helper files
+    │   ├── fraud_model.pkl
+    │   ├── default_values.pkl
+    │   ├── column_order.pkl
+    │   └── encoders.pkl
+    ├── notebooks/
+    │   └── 01_eda.ipynb        # Data exploration and model training
+    ├── visualizations/         # EDA and model performance charts
+    ├── requirements.txt
+    └── README.md
 
 ## Approach
 
@@ -57,8 +76,8 @@ The model needs 420 input features to make a prediction, but a user can't realis
 
 ## Limitations
 
-- Most features (`C` and `V` columns) are anonymized by Kaggle for privacy reasons, so their real-world meaning is unknown — the model can show *which* features matter, but not *why* in business terms.
-- Precision (0.27) is moderate — in a production system, this would need threshold tuning to reduce false positives before deployment.
+- Most features (`C` and `V` columns) are anonymized by Kaggle for privacy reasons, so their real-world meaning is unknown - the model can show *which* features matter, but not *why* in business terms.
+- Precision (0.27) is moderate - in a production system, this would need threshold tuning to reduce false positives before deployment.
 - The model was trained with a recall-first tradeoff (catching more fraud, at the cost of more false alarms), which is a common and defensible choice in fraud detection but would need to be validated against actual business costs.
 
 ## Run Locally
