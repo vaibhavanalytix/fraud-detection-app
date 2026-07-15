@@ -57,7 +57,7 @@ The model needs 420 input features to make a prediction, but a user can't realis
 
 ## Limitations
 
-- Most features (`C` and `V` columns) are anonymized by Kaggle for privacy reasons, so their real-world meaning is unknown — the model can show *which* features matter, but not *why* in business terms.
+- Most features (`C` and `V` columns) are anonymized by Kaggle for privacy reasons, so their real-world meaning is unknown - the model can show *which* features matter, but not *why* in business terms.
 - Precision (0.27) is moderate — in a production system, this would need threshold tuning to reduce false positives before deployment.
 - The model was trained with a recall-first tradeoff (catching more fraud, at the cost of more false alarms), which is a common and defensible choice in fraud detection but would need to be validated against actual business costs.
 
